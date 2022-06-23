@@ -18,48 +18,52 @@
     <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/css/style.min.css">
     <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/css/main.css">
     <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/datatables.min.css">
-    <title>Document</title>
+    <title>Consulta Furto e Roubo</title>
 </head>
 
 <body id="body_table">
     <div class="container col-md-12" id="cont_pag_consulta">
         <div class="col-md-12">
             <div id="caixa_parametros">
-                    <!-- caixa de parametros para consumo da API -->
-                    <div class="data_input">
-                        <label for="data_inic">Data inicial</label><br>
-                        <input type="date" id="data_inic">
-                    </div>
-                    <div class="data_input">
-                        <label for="data_inic">Data final</label><br>
-                        <input type="date" id="data_fin">
-                    </div>
-                    <div class="data_input">
-                        <label for="data_placa">Placa</label><br>
-                        <input type="placa" id="pPlaca">
-                    </div>
-                    <div class="data_input">
-                        <input type="checkbox" name="restricao" id="pRestricao">
-                        <label for="restricao" class="label_check_box">Veículo sem Restrição</label>
-                    </div>
-                    <div class="data_input">
-                        <input type="checkbox" name="recuperado" id="pRecuperado">
-                        <label for="recuperado" class="label_check_box">Veículo Recuperado</label>
-                    </div>
-                    <div class="data_input">
-                        <!-- Botões para chamar fluxos -->
-                        <button class="btn btn-success btn-xs" id="btn_search" onclick="parent.ebfFlowExecute('cNovaConsultaFurtoRoubo', null);;">
-                            <div class="span_center"><span class="material-symbols-outlined">search</span>
-                                <span>Filtrar</span>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="data_input">
-                        <button class="btn btn-success btn-xs" id="btn_print" onclick="parent.ebfFlowExecute('NovoRelatorioFurtoRoubo', null);;">
-                            <div class="span_center"><span
-                                    class="material-symbols-outlined">print</span><span>Imprimir</span></div>
-                        </button>
-                    </div>
+                <!-- caixa de parametros para consumo da API -->
+                <div class="data_input">
+                    <label for="data_inic">Data inicial</label><br>
+                    <input type="date" id="data_inic">
+                </div>
+                <div class="data_input">
+                    <label for="data_inic">Data final</label><br>
+                    <input type="date" id="data_fin">
+                </div>
+                <div class="data_input">
+                    <label for="data_placa">Placa: <span id="tipo_placa"
+                            style="color: red; font-size: xmsmall;"></span></label><br>
+                    <input type="placa" id="pPlaca"
+                        onkeypress="return !(event.charCode >= 1  && event.charCode <= 47) && !(event.charCode >= 58  && event.charCode <= 64) && !(event.charCode >= 123 && event.charCode <= 255)">
+                </div>
+                <div class="data_input">
+                    <input type="checkbox" name="restricao" id="pRestricao">
+                    <label for="restricao" class="label_check_box">Veículo sem Restrição</label>
+                </div>
+                <div class="data_input">
+                    <input type="checkbox" name="recuperado" id="pRecuperado">
+                    <label for="recuperado" class="label_check_box">Veículo Recuperado</label>
+                </div>
+                <div class="data_input">
+                    <!-- Botões para chamar fluxos -->
+                    <button class="btn btn-success btn-xs" id="btn_search"
+                        onclick="parent.ebfFlowExecute('cNovaConsultaFurtoRoubo', null);;">
+                        <div class="span_center"><span class="material-symbols-outlined">search</span>
+                            <span>Filtrar</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="data_input">
+                    <button class="btn btn-success btn-xs" id="btn_print"
+                        onclick="parent.ebfFlowExecute('NovoRelatorioFurtoRoubo', null);;">
+                        <div class="span_center"><span
+                                class="material-symbols-outlined">print</span><span>Imprimir</span></div>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="row" id="abas_todas">
@@ -105,8 +109,6 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">1</th>
-
                                             </tr>
                                         </tbody>
                                     </table>
@@ -136,18 +138,6 @@
                                         <tbody>
                                             <!-- informações tabela detran -->
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -163,6 +153,8 @@
     <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core Js -->
     <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="./script.js"></script>
     <script>
         var denatran = document.getElementById('denatran');
         var detran = document.getElementById('detran');
@@ -186,17 +178,44 @@
         var btn_i = document.getElementById('btn_print');
         var data_inic;
         var data_fim;
-        var data_placa;
-        var data_restricao;
-        var data_recuperado;
+        var pPlaca;
+        var pRestricao;
+        var pRecuperado;
 
-        btn_s.onclick = obtemDados = () =>{
+        //Função para fins de teste
+        btn_s.onclick = obtemDados = () => {
             data_inic = document.getElementById('data_inic').value;
             data_fim = document.getElementById('data_fin').value;
-            data_placa = document.getElementById('data_placa').value;
-            data_restricao = document.getElementById('data_restricao').checked;
-            data_recuperado = document.getElementById('data_recuperado').checked;
-            console.log(data_fim, data_inic, data_placa, data_recuperado, data_restricao);
+            pPlaca = document.getElementById('pPlaca').value;
+            pRestricao = document.getElementById('pRestricao').checked;
+            pRecuperado = document.getElementById('pRecuperado').checked;
+            console.log(data_fim, data_inic, pPlaca, pRecuperado, pRestricao);
+        }
+
+        //definição do tipo da placa (mercosul ou padrão antigo)
+        var mercosul;
+        var placa = document.getElementById('pPlaca');
+        placa.onfocusout = () => {
+
+            pPlaca = document.getElementById('pPlaca').value.replace(/\b/g, '');
+
+            if ((pPlaca.match(/^([a-z]{3})([0-9]{1})([a-z]{1})([0-9]{2})/) != null) == true) {
+                mercosul = true;
+                document.getElementById('tipo_placa').innerText = "Mercosul";
+                pPlaca = pPlaca.toUpperCase();
+                document.getElementById('pPlaca').value = pPlaca;
+            }
+            else if((pPlaca.match(/^([a-z]{3})([0-9]{4})/i) != null) == true){
+                mercosul = false;
+                document.getElementById('tipo_placa').innerText = "padrão antigo";
+                pPlaca = pPlaca.toUpperCase();
+                document.getElementById('pPlaca').value = pPlaca.replace(/\b/g, '').replace(/^([A-Z]{3})([0-9]{4})/, "$1-$2");
+            }
+            else{
+                document.getElementById('tipo_placa').innerText = "Placa Inválida";
+                document.getElementById('pPlaca').value = null;
+                setTimeout(clearText=()=>{document.getElementById('tipo_placa').innerText = ''}, 3500);
+            }
         }
         
     </script>
