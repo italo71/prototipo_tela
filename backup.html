@@ -1,0 +1,187 @@
+<body id="body_table">
+    <div class="container col-md-12" id="cont_pag_consulta">
+        <div class="col-md-12">
+            <div id="caixa_parametros">
+                <!-- caixa de parametros para consumo da API -->
+                <div class="data_input">
+                    <label for="data_inic">Data inicial</label><br>
+                    <input type="date" id="data_inic">
+                </div>
+                <div class="data_input">
+                    <label for="data_inic">Data final</label><br>
+                    <input type="date" id="data_fin">
+                </div>
+                <div class="data_input">
+                    <label for="data_placa">Placa</label><br>
+                    <input type="placa" id="pPlaca">
+                </div>
+                <div class="data_input">
+                    <input type="checkbox" name="restricao" id="pRestricao">
+                    <label for="restricao" class="label_check_box">Veículo sem Restrição</label>
+                </div>
+                <div class="data_input">
+                    <input type="checkbox" name="recuperado" id="pRecuperado">
+                    <label for="recuperado" class="label_check_box">Veículo Recuperado</label>
+                </div>
+                <div class="data_input">
+                    <button class="btn btn-success btn-xs" id="btn_search"
+                        onclick="parent.ebfFlowExecute('cNovaConsultaFurtoRoubo', null);;">
+                        <div class="span_center"><span class="material-symbols-outlined">search</span>
+                            <span>Filtrar</span></div>
+                    </button>
+                </div>
+                <div class="data_input">
+                    <button class="btn btn-success btn-xs" id="btn_print"
+                        onclick="parent.ebfFlowExecute('cNovoRelatorioFurtoRoubo', null);;">
+                        <div class="span_center"><span
+                                class="material-symbols-outlined">print</span><span>Imprimir</span></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="abas_todas">
+            <!-- Abas denatran e detran -->
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="body" style="padding-top: 8px;">
+                        <div class="col-md-12" style="margin-bottom: 5px;">
+                            <ul class="nav nav-tabs  justify-content-center" id="abas" role="tablist">
+                                <li role="presentation" class="active" id="pagina_cad">
+                                    <a href="#denatran" data-toggle="tab" id="link_denatran">
+                                        DENATRAN
+                                    </a>
+                                </li>
+                                <li role="presentation" id="aba_dbbancario" onClick="">
+                                    <a href="#detran" data-toggle="tab" id="link_detran">
+                                        DETRAN
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" style="padding-top: 0;">
+                            <div role="tabpanel" id="denatran">
+                                <div class="row clearfix">
+                                    <!-- tabela denatran -->
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <!-- cabeçalho tabela denatran -->
+                                                <th scope="col" class="th_table"></th>
+                                                <th scope="col" class="th_table">Evento</th>
+                                                <th scope="col" class="th_table">Associação</th>
+                                                <th scope="col" class="th_table">Data Abertura</th>
+                                                <th scope="col" class="th_table">Veiculo</th>
+                                                <th scope="col" class="th_table">Placa</th>
+                                                <th scope="col" class="th_table">Status</th>
+                                                <th scope="col" class="th_table">Data/Hora</th>
+                                                <th scope="col" class="th_table">Veículo Recuperado</th>
+                                                <th scope="col" class="th_table">Consulta Realizada</th>
+                                                <th scope="col" class="th_table">Data Criação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" id="detran" style="display: none;">
+                                <div class="row clearfix">
+                                    <div class="qnt_style">
+                                        <!-- tabela detran -->
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <!-- cabeçalho tabela detran -->
+                                                    <th scope="col" class="th_table"></th>
+                                                    <th scope="col" class="th_table">Evento</th>
+                                                    <th scope="col" class="th_table">Associação</th>
+                                                    <th scope="col" class="th_table">Data Abertura</th>
+                                                    <th scope="col" class="th_table">Veiculo</th>
+                                                    <th scope="col" class="th_table">Placa</th>
+                                                    <th scope="col" class="th_table">Status</th>
+                                                    <th scope="col" class="th_table">Data/Hora</th>
+                                                    <th scope="col" class="th_table">Veículo Recuperado</th>
+                                                    <th scope="col" class="th_table">Veículo Entregue</th>
+                                                    <th scope="col" class="th_table">Consulta Realizada</th>
+                                                    <th scope="col" class="th_table">Data Criação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- informações tabela detran -->
+                                                <tr>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+    <script>
+        var denatran = document.getElementById('denatran');
+        var detran = document.getElementById('detran');
+        var b_denatran = document.getElementById('link_denatran');
+        var b_detran = document.getElementById('link_detran');
+
+        b_denatran.onclick = () => {
+            denatran.style.display = "block";
+            detran.style.display = "none";
+        }
+
+        b_detran.onclick = () => {
+            detran.style.display = "block";
+            denatran.style.display = "none";
+        }
+    </script>
+    <!-- Jquery Core Js -->
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/select2/dist/js/select2.min.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/node-waves/waves.js"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Data Table Plugin Js -->
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/moment/moment.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/datatables.min.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/dt-moment.js"></script>
+
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/Buttons-1.6.1/js/buttons.flash.min.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/jszip.min.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript"
+        src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/Buttons-1.6.1/js/buttons.print.min.js"></script>
+
+    <!--  -->
+
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/js/mainNoConflict.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery-ui/datepicker-pt-BR.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/ckeditor/ckeditor.js"></script>
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/ckeditor/lang/pt-br.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery-countto/jquery.countTo.js"></script>
+</body>
