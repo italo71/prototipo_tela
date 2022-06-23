@@ -1,0 +1,80 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.qnt_style span{
+    margin: 0 0 0 1% !important;
+}
+
+#body_table{
+    margin: 10px;
+    background-color: lightgray;
+}
+
+.label_check_box{
+    padding: 0 !important;
+}
+
+.span_center span{
+    vertical-align: middle;
+}
+
+.span_center{
+    padding: 3px 3px 0px 0px;
+}
+
+.th_table{
+    color: black;
+}
+
+.data_input{
+    display: inline-block;
+    margin: 3px;
+}
+
+#cont_pag_consulta{
+    background-color: white;
+    border-radius: 15px;
+}
+
+#close_pag{
+    float: right;
+}
+
+#hr_pag{
+    border: 1px solid lightgray;
+}
+
+#h1_title{
+    margin-top: 7px;
+}
+
+#close_pag{
+    background-color: red;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    border-radius: 5px;
+}
+
+#close_pag i{
+    font-size: 15px;
+    display: block;
+}
+
+#close_pag:hover{
+    color: lightgray;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    display: inline;
+}
+
+a{
+    color: black;
+}

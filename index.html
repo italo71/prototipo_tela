@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet"
+        href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/node-waves/waves.css">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/css/style.min.css">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/css/main.css">
+    <link rel="stylesheet" href="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/datatables/datatables.min.css">
+    <title>Document</title>
+</head>
+
+<body id="body_table">
+    <div class="container col-md-12" id="cont_pag_consulta">
+        <div class="col-md-12">
+            <div id="caixa_parametros">
+                    <!-- caixa de parametros para consumo da API -->
+                    <div class="data_input">
+                        <label for="data_inic">Data inicial</label><br>
+                        <input type="date" id="data_inic">
+                    </div>
+                    <div class="data_input">
+                        <label for="data_inic">Data final</label><br>
+                        <input type="date" id="data_fin">
+                    </div>
+                    <div class="data_input">
+                        <label for="data_placa">Placa</label><br>
+                        <input type="placa" id="pPlaca">
+                    </div>
+                    <div class="data_input">
+                        <input type="checkbox" name="restricao" id="pRestricao">
+                        <label for="restricao" class="label_check_box">Veículo sem Restrição</label>
+                    </div>
+                    <div class="data_input">
+                        <input type="checkbox" name="recuperado" id="pRecuperado">
+                        <label for="recuperado" class="label_check_box">Veículo Recuperado</label>
+                    </div>
+                    <div class="data_input">
+                        <!-- Botões para chamar fluxos -->
+                        <button class="btn btn-success btn-xs" id="btn_search" onclick="parent.ebfFlowExecute('cNovaConsultaFurtoRoubo', null);;">
+                            <div class="span_center"><span class="material-symbols-outlined">search</span>
+                                <span>Filtrar</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="data_input">
+                        <button class="btn btn-success btn-xs" id="btn_print" onclick="parent.ebfFlowExecute('NovoRelatorioFurtoRoubo', null);;">
+                            <div class="span_center"><span
+                                    class="material-symbols-outlined">print</span><span>Imprimir</span></div>
+                        </button>
+                    </div>
+            </div>
+        </div>
+        <div class="row" id="abas_todas">
+            <!-- Abas denatran e detran -->
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="body" style="padding-top: 8px;">
+                        <div class="col-md-12" style="margin-bottom: 5px;">
+                            <!-- Ancoras para trocar visibilidade das abas -->
+                            <ul class="nav nav-tabs  justify-content-center" id="abas" role="tablist">
+                                <li role="presentation" class="active" id="pagina_cad">
+                                    <a href="#denatran" data-toggle="tab" id="link_denatran">
+                                        DENATRAN
+                                    </a>
+                                </li>
+                                <li role="presentation" id="aba_dbbancario" onClick="">
+                                    <a href="#detran" data-toggle="tab" id="link_detran">
+                                        DETRAN
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" style="padding-top: 0;">
+                            <div role="tabpanel" id="denatran">
+                                <div class="row clearfix">
+                                    <!-- tabela denatran -->
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <!-- cabeçalho tabela denatran -->
+                                                <th scope="col" class="th_table"></th>
+                                                <th scope="col" class="th_table">Evento</th>
+                                                <th scope="col" class="th_table">Associação</th>
+                                                <th scope="col" class="th_table">Data Abertura</th>
+                                                <th scope="col" class="th_table">Veiculo</th>
+                                                <th scope="col" class="th_table">Placa</th>
+                                                <th scope="col" class="th_table">Status</th>
+                                                <th scope="col" class="th_table">Data/Hora</th>
+                                                <th scope="col" class="th_table">Veículo Recuperado</th>
+                                                <th scope="col" class="th_table">Consulta Realizada</th>
+                                                <th scope="col" class="th_table">Data Criação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" id="detran" style="display: none;">
+                                <div class="row clearfix">
+                                    <!-- tabela detran -->
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <!-- cabeçalho tabela detran -->
+                                                <th scope="col" class="th_table"></th>
+                                                <th scope="col" class="th_table">Evento</th>
+                                                <th scope="col" class="th_table">Associação</th>
+                                                <th scope="col" class="th_table">Data Abertura</th>
+                                                <th scope="col" class="th_table">Veiculo</th>
+                                                <th scope="col" class="th_table">Placa</th>
+                                                <th scope="col" class="th_table">Status</th>
+                                                <th scope="col" class="th_table">Data/Hora</th>
+                                                <th scope="col" class="th_table">Veículo Recuperado</th>
+                                                <th scope="col" class="th_table">Veículo Entregue</th>
+                                                <th scope="col" class="th_table">Consulta Realizada</th>
+                                                <th scope="col" class="th_table">Data Criação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- informações tabela detran -->
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery Core Js -->
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core Js -->
+    <script src="https://siga.arcoconsultoria.com/SIGA/libsiga/plugins/bootstrap/js/bootstrap.js"></script>
+    <script>
+        var denatran = document.getElementById('denatran');
+        var detran = document.getElementById('detran');
+        var b_denatran = document.getElementById('link_denatran');
+        var b_detran = document.getElementById('link_detran');
+
+        //funções que alternam visibilidade das abas conforme a aba selecionada
+        b_denatran.onclick = () => {
+            //desativa detran, ativa denatran
+            denatran.style.display = "block";
+            detran.style.display = "none";
+        }
+
+        b_detran.onclick = () => {
+            //desativa denatran, ativa detran
+            detran.style.display = "block";
+            denatran.style.display = "none";
+        }
+
+        var btn_s = document.getElementById('btn_search');
+        var btn_i = document.getElementById('btn_print');
+        var data_inic;
+        var data_fim;
+        var data_placa;
+        var data_restricao;
+        var data_recuperado;
+
+        btn_s.onclick = obtemDados = () =>{
+            data_inic = document.getElementById('data_inic').value;
+            data_fim = document.getElementById('data_fin').value;
+            data_placa = document.getElementById('data_placa').value;
+            data_restricao = document.getElementById('data_restricao').checked;
+            data_recuperado = document.getElementById('data_recuperado').checked;
+            console.log(data_fim, data_inic, data_placa, data_recuperado, data_restricao);
+        }
+        
+    </script>
+</body>
+
+</html>
